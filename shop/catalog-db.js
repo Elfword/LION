@@ -10,5 +10,15 @@ export async function getProducts() {
     throw error;
   }
 
-  return data;
+  return data.map(normalizeProduct);
+}
+
+function normalizeProduct(product) {
+  return {
+    ...product,
+    originalPrice: product.original_price,
+    partNumber: product.sku,
+    soldCount: product.sold_count,
+    shopeeUrl: product.shopee_url
+  };
 }
