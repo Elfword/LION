@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Lion Automotive Part</title><link rel="stylesheet" href="styles.css"></head>
+<body><main style="max-width:1000px;margin:100px auto;padding:20px">
+<h1>Store Admin</h1>
+<div style="padding:20px;border:1px solid #ddd;border-radius:12px;margin:15px 0">
+<h2>Jubelio Sync</h2><p>API sync is enabled only after your Jubelio credentials are configured in Supabase Edge Function secrets.</p>
+<button id="sync">Sync Jubelio Now</button><pre id="out"></pre>
+</div>
+<div style="padding:20px;border:1px solid #ddd;border-radius:12px">
+<h2>Manual Excel Sync</h2><p>For now, run <code>scripts/import_products.py --sales-xlsx ...</code> from a trusted machine. Do not upload service-role keys to this page.</p>
+</div>
+</main>
+<script src="shop/shop-config.js"></script><script>
+document.getElementById('sync').onclick=async()=>{const out=document.getElementById('out');out.textContent='Syncing...';try{const r=await fetch(LION_SHOP_CONFIG.FUNCTIONS_URL+'/jubelio-sync',{method:'POST'});out.textContent=JSON.stringify(await r.json(),null,2)}catch(e){out.textContent=e.message}};
+</script></body></html>

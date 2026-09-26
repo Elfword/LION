@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checkout — Lion Automotive Part</title><link rel="stylesheet" href="styles.css">
+<style>
+.shop-page{max-width:1000px;margin:120px auto 60px;padding:0 20px}.checkout-grid{display:grid;grid-template-columns:1fr 360px;gap:28px}.box{padding:22px;border:1px solid #ddd;border-radius:14px;margin-bottom:18px}.field{display:grid;gap:6px;margin:12px 0}.field input,.field textarea{padding:12px;border:1px solid #ccc;border-radius:8px;font:inherit}.shop-btn{padding:13px 18px;border:0;border-radius:9px;background:#111;color:#fff;cursor:pointer;width:100%}.error{color:#b00020}.line{display:flex;justify-content:space-between;padding:7px 0}
+@media(max-width:800px){.checkout-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="shop-page">
+<h1>Checkout</h1><div id="message"></div>
+<div class="checkout-grid">
+<form id="checkout-form" class="box">
+<h2>Data Pemesan</h2>
+<label class="field">Nama<input name="name" required></label>
+<label class="field">Email<input name="email" type="email"></label>
+<label class="field">No. WhatsApp<input name="phone" required></label>
+<label class="field">Alamat<textarea name="address" rows="4" required></textarea></label>
+<label class="field">Kota<input name="city"></label>
+<label class="field">Kode Pos<input name="postal"></label>
+<label class="field">Metode Pengiriman<input name="shipping_method" placeholder="Contoh: JNE REG"></label>
+<label class="field">Catatan<textarea name="notes" rows="3"></textarea></label>
+<button class="shop-btn" type="submit">Buat Pesanan & Bayar</button>
+</form>
+<div class="box"><h2>Pesanan</h2><div id="order-summary"></div></div>
+</div></div>
+<script src="shop/shop-config.js"></script>
+<script src="shop/cart.js"></script>
+<script>
+const cfg=window.LION_SHOP_CONFIG||{}, form=document.getElementById('checkout-form'), msg=document.getElementById('message');
+function render(){const items=LionCart.read();if(!items.length){location.href='cart.html';return;}document.getElementById('order-summary').innerHTML=items.map(x=>`<div class="line"><span>${x.quantity}× ${String(x.name).slice(0,45)}</span><b>${LionCart.rupiah(x.price*x.quantity)}</b></div>`).join('')+`<hr><div class="line"><b>Total produk</b><b>${LionCart.rupiah(LionCart.subtotal())}</b></div>`;}
+form.addEventListener('submit',async e=>{
+ e.preventDefault(); msg.innerHTML='<p>Memproses pesanan...</p>'; const fd=new FormData(form);
+ const payload={customer_name:fd.get('name'),customer_email:fd.get('email'),customer_phone:fd.get('phone'),shipping_address:fd.get('address'),shipping_city:fd.get('city'),shipping_postal_code:fd.get('postal'),shipping_method:fd.get('shipping_method'),shipping_cost:0,notes:fd.get('notes'),items:LionCart.read().map(x=>({product_id:x.product_id,quantity:x.quantity}))};
+ try{
+   const r=await fetch(cfg.FUNCTIONS_URL+'/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+   const data=await r.json(); if(!r.ok) throw new Error(data.error||'Gagal membuat pesanan');
+   localStorage.setItem('lion_last_order',JSON.stringify(data));
+   location.href='order.html?order='+encodeURIComponent(data.order_number);
+ }catch(err){msg.innerHTML='<p class="error">'+err.message+'</p>';}
+});
+render();
+</script>
+</body></html>

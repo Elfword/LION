@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Keranjang — Lion Automotive Part</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.shop-page{max-width:1100px;margin:120px auto 60px;padding:0 20px}.cart-item{display:grid;grid-template-columns:90px 1fr auto;gap:18px;align-items:center;border-bottom:1px solid #ddd;padding:18px 0}.cart-item img{width:90px;height:90px;object-fit:contain;background:#f5f5f5;border-radius:10px}.qty{display:flex;gap:8px;align-items:center}.qty button{width:34px;height:34px}.summary{margin-top:28px;padding:24px;border:1px solid #ddd;border-radius:14px;max-width:420px;margin-left:auto}.shop-btn{display:inline-block;padding:12px 18px;border-radius:9px;background:#111;color:#fff;text-decoration:none;border:0;cursor:pointer}.danger{background:#eee;color:#111}
+@media(max-width:650px){.cart-item{grid-template-columns:70px 1fr}.cart-item>strong{grid-column:2}.cart-item img{width:70px;height:70px}}
+</style>
+</head>
+<body>
+<div class="shop-page">
+<h1>Keranjang</h1>
+<div id="cart"></div>
+<div id="summary"></div>
+</div>
+<script src="shop/cart.js"></script>
+<script>
+function render(){
+ const c=document.getElementById('cart'), s=document.getElementById('summary'), items=LionCart.read();
+ if(!items.length){c.innerHTML='<p>Keranjang masih kosong.</p><a class="shop-btn" href="katalog.html">Kembali ke katalog</a>';s.innerHTML='';return;}
+ c.innerHTML=items.map(x=>`<div class="cart-item">
+ <img src="${x.image||'images/logo.png'}" alt="">
+ <div><h3>${escapeHtml(x.name)}</h3><div>${LionCart.rupiah(x.price)}</div><div class="qty">
+ <button onclick="LionCart.setQty(${x.product_id},${x.quantity-1});render()">−</button>
+ <span>${x.quantity}</span>
+ <button onclick="LionCart.setQty(${x.product_id},${x.quantity+1});render()">+</button>
+ <button class="danger" onclick="LionCart.remove(${x.product_id});render()">Hapus</button>
+ </div></div>
+ <strong>${LionCart.rupiah(x.price*x.quantity)}</strong></div>`).join('');
+ s.innerHTML=`<div class="summary"><div>Subtotal <strong style="float:right">${LionCart.rupiah(LionCart.subtotal())}</strong></div>
+ <p style="margin-top:20px"><a class="shop-btn" href="checkout.html">Lanjut Checkout</a></p>
+ <button class="shop-btn danger" onclick="LionCart.clear();render()">Kosongkan</button></div>`;
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+render();
+</script>
+</body></html>

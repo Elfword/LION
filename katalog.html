@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Produk — Lion Automotive Part</title>
+  <meta name="description"
+    content="Katalog sparepart mobil lengkap dari Lion Automotive Part. Filter berdasarkan merek & kategori. Toyota, Honda, Nissan, Hyundai & lainnya.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Lion Automotive Part Logo">
+        <span>LION AUTOMOTIVE PART</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Tentang Kami</a>
+        <a href="katalog.html" class="active">Katalog</a>
+        <a href="pembayaran.html">Pembayaran</a>
+        <a href="index.html#brands">Merek</a>
+        <a href="index.html#locations">Lokasi</a>
+        <a href="index.html#shops">Toko Online</a>
+      </div>
+      <a href="index.html#team" class="nav-cta">💬 Hubungi Kami</a>
+      <button class="mobile-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="overlay"></div>
+  <div class="mobile-menu">
+    <button class="close-menu" aria-label="Close menu">✕</button>
+    <a href="index.html">Beranda</a>
+    <a href="katalog.html">Katalog Produk</a>
+    <a href="pembayaran.html">Pembayaran</a>
+    <a href="index.html#brands">Merek</a>
+    <a href="index.html#locations">Lokasi</a>
+    <a href="index.html#shops">Toko Online</a>
+    <a href="index.html#team" style="color: var(--accent-gold);">💬 Hubungi Kami</a>
+  </div>
+
+  <!-- CATALOG HERO -->
+  <section class="catalog-hero">
+    <div class="container">
+      <div class="catalog-hero-content">
+        <div class="section-label">Katalog Produk</div>
+        <h1>Temukan Sparepart yang Anda Butuhkan</h1>
+        <p>Cari dari <strong id="total-products">0</strong> produk sparepart mobil berkualitas dari berbagai merek
+          ternama.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP SEARCH SECTION -->
+  <section class="catalog-filters" id="catalog-filters">
+    <div class="container">
+      <div class="search-box" id="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Cari produk... (contoh: brake pad honda)" autocomplete="off">
+        <button class="search-clear" id="search-clear" style="display:none;">✕</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CATALOG SECTION (SIDEBAR + GRID) -->
+  <section class="catalog-grid-section">
+    <div class="container catalog-layout-wrapper">
+
+      <!-- SIDEBAR FILTERS -->
+      <aside class="catalog-sidebar" id="catalog-sidebar">
+        <div class="sidebar-header">
+          <h3>Filter Katalog</h3>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Kategori</label>
+          <div class="filter-chips vertical-chips" id="category-filters">
+            <button class="filter-chip active" data-category="all">Semua Kategori</button>
+            <button class="filter-chip" data-category="Komponen Mesin">Mesin</button>
+            <button class="filter-chip" data-category="Sistem Rem">Rem</button>
+            <button class="filter-chip" data-category="Suspensi & Steering">Suspensi</button>
+            <button class="filter-chip" data-category="Kelistrikan & Lampu">Kelistrikan</button>
+            <button class="filter-chip" data-category="Transmisi & Kopling">Transmisi</button>
+            <button class="filter-chip" data-category="Oli & Cairan">Oli & Perawatan</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Merek Kendaraan</label>
+          <div class="filter-chips vertical-chips" id="brand-filters">
+            <button class="filter-chip active" data-brand="all">Semua Merek</button>
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Urutkan</label>
+          <select class="sort-select" id="sort-select">
+            <option value="default">Rekomendasi</option>
+            <option value="price-low">Harga: Rendah → Tinggi</option>
+            <option value="price-high">Harga: Tinggi → Rendah</option>
+            <option value="name-az">Nama: A → Z</option>
+            <option value="discount">Diskon Terbesar</option>
+          </select>
+        </div>
+
+        <div class="active-filters" id="active-filters" style="display:none;">
+          <span class="active-filters-label">Filter aktif:</span>
+          <div class="active-filter-tags" id="active-filter-tags"></div>
+          <button class="clear-all-filters" id="clear-all-filters">Hapus Semua</button>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT AREA -->
+      <main class="catalog-content">
+        <div class="catalog-results-bar" id="results-bar">
+          <span id="results-count">Menampilkan 0 produk</span>
+        </div>
+
+        <div class="catalog-grid" id="catalog-grid">
+          <!-- Products rendered by JS -->
+        </div>
+
+        <div class="catalog-empty" id="catalog-empty" style="display:none;">
+          <div class="empty-icon">🔍</div>
+          <h3>Produk Tidak Ditemukan</h3>
+          <p>Coba ubah filter atau kata kunci pencarian Anda.</p>
+          <button class="btn-primary" onclick="resetFilters()">Reset Filter</button>
+        </div>
+
+        <div class="catalog-pagination" id="catalog-pagination">
+          <!-- Pagination rendered by JS -->
+        </div>
+      </main>
+
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="section">
+    <div class="container">
+      <div class="catalog-cta-banner">
+        <div class="cta-content">
+          <h2>Tidak Menemukan Produk yang Dicari?</h2>
+          <p>Hubungi tim sales kami via WhatsApp. Kami siap membantu mencari sparepart yang Anda butuhkan!</p>
+        </div>
+        <a href="index.html#team" class="btn-primary">💬 Chat WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="images/logo.png" alt="Lion Automotive Part"> <span>LION AUTOMOTIVE PART</span>
+          </div>
+          <p>Pusat sparepart mobil terlengkap dan terpercaya di Indonesia. Cabang di Surabaya & Tangerang Selatan.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Halaman</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="katalog.html">Katalog Produk</a></li>
+            <li><a href="pembayaran.html">Pembayaran</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Toko Online</h4>
+          <ul>
+            <li><a href="https://shopee.co.id/lionautomotivepart_" target="_blank">Shopee</a></li>
+            <li><a href="https://www.tokopedia.com/lionautomotivepart" target="_blank">Tokopedia</a></li>
+            <li><a href="https://www.tiktok.com/@lionautomotivepart" target="_blank">TikTok Shop</a></li>
+            <li><a href="https://www.lazada.co.id/shop/lion-automotiveparts/" target="_blank">Lazada</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <ul>
+            <li><a href="index.html#team">Hubungi Sales</a></li>
+            <li><a href="index.html#locations">Lokasi Toko</a></li>
+            <li><a href="pembayaran.html">Cara Pembayaran</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Lion Automotive Part. All rights reserved.</p>
+        <p>Made with 🦁 in Surabaya & Tangerang Selatan</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="product-modal-overlay" id="product-modal-overlay" style="display:none;">
+    <div class="product-modal-container" id="product-modal">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
+      <div class="modal-content-grid" id="modal-content-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js"></script>
+  <script src="katalog.js"></script>
+</body>
+
+</html>

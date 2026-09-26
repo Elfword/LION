@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cara Pembayaran — Lion Automotive Part</title>
+  <meta name="description" content="Informasi pembayaran Lion Automotive Part via transfer bank BCA.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Lion Automotive Part Logo"><span>LION AUTOMOTIVE PART</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="katalog.html">Katalog</a>
+        <a href="pembayaran.html" class="active">Pembayaran</a>
+        <a href="index.html#brands">Merek</a>
+        <a href="index.html#locations">Lokasi</a>
+        <a href="index.html#shops">Toko Online</a>
+      </div>
+      <a href="index.html#team" class="nav-cta">💬 Hubungi Kami</a>
+      <button class="mobile-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </nav>
+  <div class="overlay"></div>
+  <div class="mobile-menu">
+    <button class="close-menu" aria-label="Close menu">✕</button>
+    <a href="index.html">Beranda</a>
+    <a href="katalog.html">Katalog Produk</a>
+    <a href="pembayaran.html">Pembayaran</a>
+    <a href="index.html#brands">Merek</a>
+    <a href="index.html#locations">Lokasi</a>
+    <a href="index.html#shops">Toko Online</a>
+    <a href="index.html#team" style="color: var(--accent-gold);">💬 Hubungi Kami</a>
+  </div>
+
+  <section class="catalog-hero">
+    <div class="container">
+      <div class="catalog-hero-content">
+        <div class="section-label">Pembayaran</div>
+        <h1>Cara Pembayaran yang <span class="highlight">Mudah & Aman</span></h1>
+        <p>Bayar pesanan Anda melalui transfer bank dengan mudah dan aman.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="bank-accounts">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Rekening Bank</div>
+        <h2>Transfer ke Rekening Kami</h2>
+        <p>Pilih bank di bawah ini untuk melakukan pembayaran.</p>
+      </div>
+      <div class="bank-grid">
+        <div class="bank-card fade-up">
+          <div class="bank-card-header">
+            <div class="bank-logo-wrapper bca"><span class="bank-logo-text">BCA</span></div>
+            <span class="bank-badge">✅ Utama</span>
+          </div>
+          <div class="bank-card-body">
+            <div class="bank-info-row">
+              <span class="bank-info-label">Nomor Rekening</span>
+              <div class="bank-account-number">
+                <span class="account-number" id="bca-number">5935000065</span>
+                <button class="copy-btn" onclick="copyToClipboard('5935000065', this)" title="Salin nomor rekening">
+                  <span class="copy-icon">📋</span><span class="copy-text">Salin</span>
+                </button>
+              </div>
+            </div>
+            <div class="bank-info-row">
+              <span class="bank-info-label">Atas Nama</span>
+              <span class="bank-info-value">FERNANDO</span>
+            </div>
+            <div class="bank-info-row">
+              <span class="bank-info-label">Jenis Rekening</span>
+              <span class="bank-info-value">Tabungan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section payment-steps-section" id="payment-steps">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-label">Panduan Pembayaran</div>
+        <h2>Langkah Mudah Pemesanan</h2>
+        <p>Ikuti langkah-langkah berikut untuk memesan dan membayar produk.</p>
+      </div>
+      <div class="payment-timeline">
+        <div class="timeline-item fade-up">
+          <div class="timeline-number">1</div>
+          <div class="timeline-content">
+            <div class="timeline-icon">💬</div>
+            <h3>Hubungi Sales via WhatsApp</h3>
+            <p>Kirim pesan ke tim sales kami dengan menyebutkan produk yang ingin dibeli.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-number">2</div>
+          <div class="timeline-content">
+            <div class="timeline-icon">📋</div>
+            <h3>Terima Rincian Pesanan</h3>
+            <p>Tim kami akan mengirimkan total harga termasuk ongkos kirim dan nomor rekening.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-number">3</div>
+          <div class="timeline-content">
+            <div class="timeline-icon">🏦</div>
+            <h3>Transfer Pembayaran</h3>
+            <p>Lakukan transfer ke rekening bank yang tertera di atas sesuai jumlah yang diberikan.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-number">4</div>
+          <div class="timeline-content">
+            <div class="timeline-icon">📸</div>
+            <h3>Kirim Bukti Transfer</h3>
+            <p>Screenshot bukti transfer, lalu kirimkan ke WhatsApp sales kami untuk konfirmasi.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-number">5</div>
+          <div class="timeline-content">
+            <div class="timeline-icon">🚚</div>
+            <h3>Pesanan Dikirim</h3>
+            <p>Setelah dikonfirmasi, pesanan dikemas dan dikirim. Kami akan berikan nomor resi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="payment-notice fade-up">
+        <div class="notice-icon">🔒</div>
+        <div class="notice-content">
+          <h3>Keamanan Transaksi</h3>
+          <p>Semua transaksi dilakukan via WhatsApp dengan tim sales resmi kami. Pastikan Anda hanya bertransaksi melalui nomor WhatsApp resmi yang tercantum di website ini.</p>
+          <div class="notice-tips">
+            <div class="notice-tip">✅ Selalu konfirmasi harga dengan sales sebelum transfer</div>
+            <div class="notice-tip">✅ Simpan bukti transfer sampai barang diterima</div>
+            <div class="notice-tip">✅ Cek nomor rekening dengan teliti sebelum transfer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="catalog-cta-banner fade-up">
+        <div class="cta-content">
+          <h2>Siap Memesan?</h2>
+          <p>Hubungi tim sales kami sekarang dan dapatkan sparepart yang Anda butuhkan!</p>
+        </div>
+        <a href="index.html#team" class="btn-primary">💬 Chat WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><img src="images/logo.png" alt="Lion Automotive Part"> <span>LION AUTOMOTIVE PART</span></div>
+          <p>Pusat sparepart mobil terlengkap dan terpercaya di Indonesia.</p>
+        </div>
+        <div class="footer-col"><h4>Halaman</h4><ul><li><a href="index.html">Beranda</a></li><li><a href="katalog.html">Katalog</a></li><li><a href="pembayaran.html">Pembayaran</a></li></ul></div>
+        <div class="footer-col"><h4>Toko Online</h4><ul><li><a href="https://shopee.co.id/lionautomotivepart_" target="_blank">Shopee</a></li><li><a href="https://www.tokopedia.com/lionautomotivepart" target="_blank">Tokopedia</a></li><li><a href="https://www.lazada.co.id/shop/lion-automotiveparts/" target="_blank">Lazada</a></li></ul></div>
+        <div class="footer-col"><h4>Bantuan</h4><ul><li><a href="index.html#team">Hubungi Sales</a></li><li><a href="index.html#locations">Lokasi Toko</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Lion Automotive Part. All rights reserved.</p><p>Made with 🦁 in Surabaya & Tangerang Selatan</p></div>
+    </div>
+  </footer>
+  <script>
+    const mobileToggle=document.querySelector('.mobile-toggle'),mobileMenu=document.querySelector('.mobile-menu'),overlay=document.querySelector('.overlay'),closeMenu=document.querySelector('.close-menu');
+    function openMenu(){mobileMenu.classList.add('active');overlay.classList.add('active');document.body.style.overflow='hidden'}
+    function closeMenuFn(){mobileMenu.classList.remove('active');overlay.classList.remove('active');document.body.style.overflow=''}
+    mobileToggle.addEventListener('click',openMenu);closeMenu.addEventListener('click',closeMenuFn);overlay.addEventListener('click',closeMenuFn);
+    document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',closeMenuFn));
+    const fadeEls=document.querySelectorAll('.fade-up');
+    const obs=new IntersectionObserver(e=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('visible'),i*100);obs.unobserve(en.target)}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+    fadeEls.forEach(el=>obs.observe(el));
+    function copyToClipboard(text,btn){navigator.clipboard.writeText(text).then(()=>{const ct=btn.querySelector('.copy-text'),ci=btn.querySelector('.copy-icon');ct.textContent='Tersalin!';ci.textContent='✅';btn.classList.add('copied');setTimeout(()=>{ct.textContent='Salin';ci.textContent='📋';btn.classList.remove('copied')},2000)})}
+  </script>
+</body>
+</html>

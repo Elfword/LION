@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Status Pesanan — Lion Automotive Part</title><link rel="stylesheet" href="styles.css"></head>
+<body><main style="max-width:700px;margin:140px auto;padding:20px;text-align:center">
+<h1>Pesanan Dibuat</h1><div id="box">Memuat...</div>
+<p><a href="katalog.html">Kembali ke katalog</a></p>
+</main>
+<script src="shop/cart.js"></script><script src="shop/shop-config.js"></script>
+<script>
+const data=JSON.parse(localStorage.getItem('lion_last_order')||'null'), box=document.getElementById('box');
+if(!data){box.textContent='Data pesanan tidak ditemukan.';}else{
+ box.innerHTML='<p>Nomor pesanan: <strong>'+data.order_number+'</strong></p><p>Total: <strong>'+LionCart.rupiah(data.total)+'</strong></p><p>Checkout pembayaran akan muncul di sini setelah Midtrans dikonfigurasi.</p><button onclick="location.href='katalog.html'">Belanja lagi</button>';
+ LionCart.clear();
+}
+</script></body></html>
